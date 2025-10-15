@@ -1,35 +1,51 @@
-import {Text, View, StyleSheet } from "react-native";
-import { colors } from "@/library/styles"
-interface ForecastProps {
-    sunrise: string;
-    sunset: string;
-    high: number;
-    low: number;
-    rain: number;
-    rainChance: number;
-    sky: string;
-    skyCode: number;
-}
+import {Text, View } from "react-native";
+import { Sunrise } from 'react-native-feather';
+import { WeatherContext } from "@/components/ContextProviders/WeatherContextProvider";
+import {useContext} from "react";
+import ConditionsBox from "@/components/ConditionsBox";
 
-const Forecast = ({sunrise, sunset, high, low, rain, rainChance, sky, skyCode}: ForecastProps) => {
+
+
+const Forecast = () => {
+    const data = useContext(WeatherContext);
     return (
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.title}>Sunrise</Text>
-                <Text style={styles.data}>{sunrise}</Text>
-                <Text style={styles.title }>Sunset</Text>
-                <Text style={styles.data}>{sunset}</Text>
-                <Text style={styles.title }>Chance of Rain</Text>
-                <Text style={styles.data}>{rainChance}</Text>
+        <View className="flex-1 flex-row items-center justify-center py-2" >
+            <View className="flex-1 justify-center items-center gap-2">
+                <ConditionsBox icon={<Sunrise stroke="white" />} title={"SUNRISE"} data={data?.sunriseDay0} />
+
+                <View className="flex-1 justify-center items-center">
+                    <Text className="text-3xl text-slate-300">Sunset</Text>
+                    <Text className="text-xl text-slate-300">{data?.sunsetDay0}</Text>
+                </View>
+
+                <View className="flex-1 justify-center items-center">
+                    <Text className="text-3xl text-slate-300">Rain</Text>
+                    <Text className="text-xl text-slate-300">{data?.rainChanceDay0}%</Text>
+                </View>
+
+
+
             </View>
-            <View>
-                <Text style={styles.title}>Low</Text>
-                <Text style={styles.data}>{low}</Text>
-                <Text style={styles.title }>High</Text>
-                <Text style={styles.data}>{high}</Text>
-                <Text style={styles.title }>Sky</Text>
-                <Text style={styles.data}>{sky}</Text>
-            </View>
+            <View className="flex-1 justify-center items-center">
+                <View className="flex-1 justify-center items-center">
+                    <Text className="text-3xl text-slate-300">Low</Text>
+                    <Text className="text-xl text-slate-300">{data?.lowTempDay0}</Text>
+                </View>
+
+                <View className="flex-1 justify-center items-center">
+                    <Text className="text-3xl text-slate-300">High</Text>
+                    <Text className="text-xl text-slate-300">{data?.highTempDay0}</Text>
+                </View>
+
+                <View className="flex-1 justify-center items-center">
+
+                    <Text className="text-3xl text-slate-300">Sky</Text>
+                    <Text className="text-xl text-slate-300">{data?.sky}</Text>
+                </View>
+                </View>
+
+
+
 
         </View>
 
@@ -37,19 +53,3 @@ const Forecast = ({sunrise, sunset, high, low, rain, rainChance, sky, skyCode}: 
 }
 
 export default Forecast
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "row",
-    },
-    data: {
-        color: colors.light,
-        fontSize: 20,
-    },
-    title: {
-        color: colors.light,
-        fontSize: 30,
-
-    }
-})

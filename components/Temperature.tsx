@@ -1,22 +1,17 @@
-import {Text, StyleSheet} from "react-native";
-import {colors} from "@/library/styles"
+import {Text, View} from "react-native";
+import { useContext } from "react";
+import { WeatherContext } from "@/components/ContextProviders/WeatherContextProvider";
 
-const Temperature = ({temp}: { temp: number }) => {
+const Temperature = () => {
+    const data = useContext(WeatherContext)
     return (
-        <Text style={styles.text}>
-            {Math.round(temp)}℉
-        </Text>
+    <View className="flex-1 flex-col items-center" >
+            <Text className="text-4xl text-slate-400">
+                {data?.temperature}℉
+            </Text>
+    </View>
+
     )
 }
 export default Temperature;
 
-const styles = StyleSheet.create({
-    text: {
-        fontFamily: "Roboto_400Regular",
-        fontSize: 120,
-        color: colors.light,
-        textShadowColor: colors.dark,
-        textShadowOffset: {width: 1, height: 1},
-
-    }
-})

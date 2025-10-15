@@ -1,34 +1,27 @@
-import {Text, StyleSheet, View} from "react-native";
-import { colors } from "@/library/styles";
+import { Text, View } from "react-native";
 
-const ConditionsBox = ({title, data}: {title:string, data:string}) => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.data}>{data}</Text>
+import React, { JSX } from "react";
+import { IconType } from "react-icons";
+import { JSXElement } from "@babel/types";
+
+const ConditionsBox = ({
+  title,
+  data,
+  icon,
+}: {
+  icon: JSX.Element;
+  title: string;
+  data: string | undefined;
+}) => {
+  return (
+    <View className="flex-1 flex-row items-center justify-center bg-orange-500 pl-3 rounded-lg">
+      {icon}
+        <View className="px-5">
+            <Text className="text-gray-50">{title}</Text>
+            <Text className="text-gray-50">{data}</Text>
         </View>
 
-    )
-}
-export default ConditionsBox
-
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: colors.background,
-        padding: 10,
-        marginVertical: 5,
-        height: 75,
-        width: "90%",
-        borderRadius: 15,
-    },
-    title: {
-        fontSize: 25,
-        color: colors.light,
-    },
-    data: {
-        fontSize: 22,
-        color: colors.light,
-    }
-})
+    </View>
+  );
+};
+export default ConditionsBox;
