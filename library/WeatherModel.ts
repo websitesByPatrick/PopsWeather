@@ -87,8 +87,8 @@ export class WeatherModel {
         this.dewPoint = data.current?.dewpoint_f ?? 0;
         this.visibility = data.current?.vis_miles ?? 0;
         this.uvIndex = data.current?.uv ?? 0;
-        this.sunriseDay0 = data.forecast.forecastday[0].astro.sunrise;
-        this.sunsetDay0= data.forecast.forecastday[0].astro.sunset;
+        this.sunriseDay0 = data.forecast.forecastday[0].astro.sunrise[0] === "0" ? data.forecast.forecastday[0].astro.sunrise.slice(1) : data.forecast.forecastday[0].astro.sunrise;
+        this.sunsetDay0= data.forecast.forecastday[0].astro.sunset[0] === "0" ? data.forecast.forecastday[0].astro.sunset.slice(1) : data.forecast.forecastday[0].astro.sunset
         this.highTempDay0 = data.forecast.forecastday[0].day.maxtemp_f;
         this.lowTempDay0 = data.forecast.forecastday[0].day.mintemp_f;
         this.rainDay0 = data.forecast.forecastday[0].day.totalprecip_in;
