@@ -6,30 +6,37 @@ import Logo from "@/components/Logo";
 import CityState from "@/components/CityState";
 import Temperature from "@/components/Temperature";
 import Forecast from "@/components/Forecast";
+import { useState } from "react";
 
-const index = () => {
+import WeatherBackground from "@/components/WeatherBackground";
+
+const Index = () => {
+  const [searchCity, setSearchCity] = useState<string>("77389")
   return (
-    <View className="bg-slate-900 flex-1 p-5 gap-2">
-      <SafeAreaView>
+    <WeatherBackground>
+      <SafeAreaView className="flex-1">
         <ScrollView showsVerticalScrollIndicator={false}>
-          <WeatherContextProvider>
-            <View className="pb-10">
+          <WeatherContextProvider searchCity={searchCity}>
+            <View className="flex-1">
               <Logo />
             </View>
-            <View className="pb-10">
-              <View className="flex-1 flex-row bg-slate-800 rounded-2xl items-center justify-center">
-                <CityState />
-                <Temperature />
-              </View>
+
+            <View className="flex-1">
+              <CityState />
             </View>
 
-            <View className="flex-1 flex-row  bg-slate-800 rounded-2xl items-center py-5">
+            <View className="flex-1">
+              <Temperature />
+            </View>
+
+            <View className="flex-1">
               <Forecast />
             </View>
+
           </WeatherContextProvider>
         </ScrollView>
       </SafeAreaView>
-    </View>
+    </WeatherBackground>
   );
 };
-export default index;
+export default Index;

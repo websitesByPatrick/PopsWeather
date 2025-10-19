@@ -3,12 +3,13 @@ import {WeatherModel} from "@/library/WeatherModel";
 
 
 export const WeatherContext = React.createContext<WeatherModel | null>(null);
-
-const WeatherContextProvider = ({children}: { children: React.ReactNode }) => {
+export const CityContext = React.createContext<string>("75503");
+const WeatherContextProvider = ({children, searchCity}: { children: React.ReactNode, searchCity:string }) => {
 
     const [weatherData, setWeatherData] = useState<WeatherModel | null>(null);
+
     const API_KEY = process.env.EXPO_PUBLIC_WEATHER_API_KEY;
-    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=71854&aqi=no`;
+    const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${searchCity}&aqi=no`;
 
     useEffect(() => {
         // Fetch weather data from an API

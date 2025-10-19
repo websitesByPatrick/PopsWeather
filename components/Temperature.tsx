@@ -1,17 +1,17 @@
-import {Text, View} from "react-native";
+import { Text, View } from "react-native";
 import { useContext } from "react";
 import { WeatherContext } from "@/components/ContextProviders/WeatherContextProvider";
 
 const Temperature = () => {
-    const data = useContext(WeatherContext)
+  const data = useContext(WeatherContext); {
     return (
-    <View className="flex-1 flex-col items-center" >
-            <Text className="text-4xl text-slate-400">
-                {data?.temperature}℉
-            </Text>
-    </View>
+        <View className="flex-1 flex-row items-center justify-center">
+            <Text className="text-8xl text-slate-50" >{data?.temperature}</Text>
+        </View>
 
     )
-}
-export default Temperature;
 
+  }
+}
+
+export default Temperature;

@@ -6,9 +6,9 @@ const CityState = () => {
   const data = useContext(WeatherContext);
 
   return (
-    <View className="flex-1 flex-col content-around">
-      <Text className="text-3xl text-slate-400 ">{data?.city}</Text>
-      <Text className="text-2xl text-slate-400">{data?.state}</Text>
+    <View className="flex-col content-center items-center pb-2 pt-5 ">
+      <Text className="text-5xl text-slate-100 ">{data?.city}</Text>
+      <Text className="text-2xl text-slate-100 ">{data?.state}</Text>
     </View>
   );
 };

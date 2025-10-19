@@ -46,7 +46,7 @@ interface WeatherTypes {
 
 
 export class WeatherModel {
-    temperature: number;
+    temperature: string;
     sky: string;
     icon: string;
     city: string;
@@ -62,18 +62,18 @@ export class WeatherModel {
     uvIndex: number;
     sunriseDay0: string;
     sunsetDay0: string;
-    highTempDay0: number;
-    lowTempDay0: number;
+    highTempDay0: string;
+    lowTempDay0: string;
     windsTempDay0: number;
     rainDay0: number;
     rainChanceDay0: number;
     skyDay0: string;
     uvIndexDay0: number;
     skyCodeDay0: number;
-
+    searchCity: string;
 
     constructor(data: WeatherTypes) {
-        this.temperature = data.current?.temp_f ?? 0;
+        this.temperature = Math.round(data.current.temp_f).toString() + "℉";
         this.sky = data.current?.condition?.text ?? '';
         this.icon = data.current?.condition?.icon ?? '';
         this.city = data.location?.name ?? '';
@@ -89,13 +89,14 @@ export class WeatherModel {
         this.uvIndex = data.current?.uv ?? 0;
         this.sunriseDay0 = data.forecast.forecastday[0].astro.sunrise[0] === "0" ? data.forecast.forecastday[0].astro.sunrise.slice(1) : data.forecast.forecastday[0].astro.sunrise;
         this.sunsetDay0= data.forecast.forecastday[0].astro.sunset[0] === "0" ? data.forecast.forecastday[0].astro.sunset.slice(1) : data.forecast.forecastday[0].astro.sunset
-        this.highTempDay0 = data.forecast.forecastday[0].day.maxtemp_f;
-        this.lowTempDay0 = data.forecast.forecastday[0].day.mintemp_f;
+        this.highTempDay0 = Math.round(data.forecast.forecastday[0].day.maxtemp_f).toString() + "℉";
+        this.lowTempDay0 = Math.round(data.forecast.forecastday[0].day.mintemp_f).toString() + "℉";
         this.rainDay0 = data.forecast.forecastday[0].day.totalprecip_in;
         this.windsTempDay0 = data.forecast.forecastday[0].day.maxwind_mph;
         this.rainChanceDay0 = data.forecast.forecastday[0].day.daily_chance_of_rain;
         this.skyDay0 = data.forecast.forecastday[0].day.condition.text;
         this.skyCodeDay0 = data.forecast.forecastday[0].day.condition.code;
         this.uvIndexDay0 = data.forecast.forecastday[0].day.uv;
+        this.searchCity = ""
     }
 }
