@@ -6,15 +6,16 @@ import Logo from "@/components/Logo";
 import CityState from "@/components/CityState";
 import Temperature from "@/components/Temperature";
 import Forecast from "@/components/Forecast";
+import Hourly from "@/components/Hourly";
 import { useState } from "react";
 
-import WeatherBackground from "@/components/WeatherBackground";
+
 
 const Index = () => {
   const [searchCity, setSearchCity] = useState<string>("77389")
   return (
-    <WeatherBackground>
-      <SafeAreaView className="flex-1">
+
+      <SafeAreaView className="flex-1 bg-slate-800">
         <ScrollView showsVerticalScrollIndicator={false}>
           <WeatherContextProvider searchCity={searchCity}>
             <View className="flex-1">
@@ -33,10 +34,14 @@ const Index = () => {
               <Forecast />
             </View>
 
+              <View className="flex-1">
+                  <Hourly />
+              </View>
+
           </WeatherContextProvider>
         </ScrollView>
       </SafeAreaView>
-    </WeatherBackground>
+
   );
 };
 export default Index;
